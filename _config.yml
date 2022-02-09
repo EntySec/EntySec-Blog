@@ -14,7 +14,7 @@ author: EntySec
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Us: "aboutme"
+  About Us: "aboutus"
   Resources:
     - EntySec: "https://entysec.netlify.app/"
     - Ivan Nikolsky: "https://enty8080.netlify.app/"
