@@ -4,7 +4,7 @@ title: Webcam Photo Phishing
 subtitle: HatSploit Framework Webcam Photo Phishing
 gh-repo: entysec/hatsploit
 gh-badge: [star, fork]
-tags: [hatsploit, fishing, module]
+tags: [hatsploit, phishing]
 comments: false
 ---
 
