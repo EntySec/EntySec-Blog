@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HatSploit breakthrough
+title: Webcam Photo Phishing
 subtitle: HatSploit Framework Webcam Photo Phishing
 gh-repo: entysec/hatsploit
 gh-badge: [star, fork]
