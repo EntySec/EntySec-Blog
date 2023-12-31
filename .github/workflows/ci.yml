@@ -6,8 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install ruby dependencies
-        run: bundle install
       - name: Build the site in the jekyll/builder container
         run: |
           export JEKYLL_VERSION=3.8
