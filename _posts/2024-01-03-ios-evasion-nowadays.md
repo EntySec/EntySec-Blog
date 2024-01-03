@@ -26,7 +26,7 @@ Recognizing the need for a persistence installation method, I came up with an id
 Essentially, our custom executable will use the `posix_spawn()` function to execute the payload and then use `execve()` to invoke the original executable. Since `execve()` replaces the current process image with a new one, this is the optimal approach to launch the application. Below, you can find a diagram illustrating this process using the `Calculator.app` as an example.
 
 <p align="center">
-  <img width="50%" src="https://raw.githubusercontent.com/EntySec/SeaShell/main/seashell/data/hook.png">
+  <img width="50%" src="https://raw.githubusercontent.com/EntySec/SeaShell/main/seashell/data/preview/hook.png">
 </p>
 
 To perform hooking we need:
