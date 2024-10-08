@@ -140,7 +140,7 @@
   {% include matomo.html %}
 
   {% if page.comments and site.staticman.repository and site.staticman.branch %}
-  <link rel="stylesheet" href="{{ "/assets/css/staticman.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/staticman.css' | relative_url }}">
   {% endif %}
 
   {% if page.head-extra %}
@@ -149,4 +149,5 @@
     {% endfor %}
   {% endif %}
 
+  <link rel="stylesheet" href="{% link assets/css/main.css %}">
 </head>

