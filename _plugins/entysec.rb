@@ -53,6 +53,8 @@ module Rouge
         mixin :whitespace
 
         rule %r{ghost|seashell}, Tokens::EntySec::Prompt
+        rule %r{:}, Punctuation
+        rule %r{[.\w/-]+}, Tokens::EntySec::Error
         rule %r{\)}, Punctuation
         rule %r{>}, Punctuation, :pop!
       end
@@ -64,7 +66,7 @@ module Rouge
         rule %r{exploit|auxiliary|post}, Text
         rule %r{:}, Punctuation
         rule %r{\]}, Punctuation
-        rule %r{[\w/]+}, Tokens::EntySec::Error
+        rule %r{[.\w/-]+}, Tokens::EntySec::Error
         rule %r{>}, Punctuation, :pop!
       end
 
