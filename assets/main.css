@@ -1,0 +1,27 @@
+.language-mermaid .label {
+    text-transform: inherit;
+}
+
+.language-entysec .zp {
+    text-decoration: underline;
+}
+
+.language-entysec .ze {
+    color: #960050;
+}
+
+.language-entysec .zg {
+    color: #859900;
+}
+
+.language-entysec .zs {
+    color: #268bd2;
+}
+
+.language-entysec .zi {
+    font-weight: bold;
+}
+
+.language-entysec .zw {
+    color: orange;
+}
