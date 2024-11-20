@@ -61,7 +61,7 @@ _check_init() {
 
 check_env() {
   _check_cli
-  _check_status
+  #_check_status
   _check_init
 }
 
