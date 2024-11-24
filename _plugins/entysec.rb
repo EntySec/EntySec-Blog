@@ -21,7 +21,7 @@ module Rouge
 
   module Lexers
     class EntySecConsoleLanguage < Rouge::RegexLexer
-      title 'entysec'
+      title 'EntySec Console'
       tag 'entysec'
       desc 'EntySec Console Highlighter'
       filenames []

@@ -23,7 +23,7 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://blog.entysec.com"
 
 github:
   username: entysec # change to your GitHub username
@@ -42,7 +42,7 @@ social:
     - https://github.com/entysec # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/ivan-nikolskiy-42a918293
 
 # Site Verification Settings
 webmaster_verifications:
@@ -159,7 +159,8 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
-    # default_lang: console
+    default_lang: entysec
+    line_numbers: false
     span:
       line_numbers: false
     block:
@@ -177,7 +178,7 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: true # Enable comments in posts.
+      comments: false # Enable comments in posts.
       toc: true # Display TOC column in posts.
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
@@ -200,7 +201,7 @@ compress_html:
   clippings: all
   comments: all
   endings: all
-  profile: false
+  profile: true
   blanklines: false
   ignore:
     envs: [development]

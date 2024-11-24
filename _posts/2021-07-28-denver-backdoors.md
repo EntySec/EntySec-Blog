@@ -18,7 +18,7 @@ Backdoor was found in a Denver SHC-150 Smart Wifi Camera by Ivan Nikolsky, secur
 
 So, the telnet service, as Ivan noticed, has hardcoded credentials and after brute-forcing them he found out that the only thing which is needed to login is username - `default`.
 
-```shell
+```console
 enty8080@Ivans-Air ~ % telnet 192.168.2.118 23
 Trying 192.168.2.118...
 Connected to pc192-168-2-118.
