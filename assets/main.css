@@ -13,6 +13,10 @@ div {
   }
 }
 
+.highlight pre {
+  white-space: break-spaces;
+}
+
 .language-entysec .zp {
     text-decoration: underline;
 }
