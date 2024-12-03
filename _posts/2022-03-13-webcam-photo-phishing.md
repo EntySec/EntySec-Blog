@@ -2,6 +2,7 @@
 title: Webcam Photo Phishing
 categories: [Exploitation]
 tags: [hatsploit, phishing]
+author: enty8080
 ---
 
 Phishing is a common technique used by attackers to gain access to sensitive information through methods like social engineering. Attackers often attempt to obtain credentials, password hashes, location data, and other critical information by tricking users into revealing this data.

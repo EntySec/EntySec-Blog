@@ -2,6 +2,7 @@
 title: Denver SHC-150 Camera Backdoor
 categories: [Exploitation]
 tags: [research, backdoor, iot]
+author: enty8080
 ---
 
 <p align="center">

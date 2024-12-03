@@ -2,6 +2,7 @@
 title: Remote in-memory ELF loader
 categories: [Programming]
 tags: [assembly, malware]
+author: enty8080
 ---
 
 Fileless malware distribution is gaining popularity.

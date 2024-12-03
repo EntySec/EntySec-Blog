@@ -2,6 +2,7 @@
 title: Android Audit with Ghost
 categories: [Post-Exploitation]
 tags: [android]
+author: enty8080
 image:
   path: https://user-images.githubusercontent.com/54115104/116760735-6da1e780-aa1e-11eb-8c6f-530386487671.png
 ---
