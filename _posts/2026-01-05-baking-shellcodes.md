@@ -202,8 +202,6 @@ When "plating" your shellcode, space is your most valuable resource. A massive, 
 * **The "Exchange" Trick:** If you have a value in `rax` that you need in `rdi` (like a socket file descriptor), don't `mov rdi, rax`. Use `xchg rdi, rax`. This is often a 1 or 2-byte instruction, saving you another precious byte over a `mov`.
 * **The "Sign Extension" Hack:** This is the chef's secret weapon. If `rax` is already zero (perhaps after a successful syscall), the instruction `cdq` (Convert Doubleword to Quadword) will effectively zero out `rdx` by extending the sign bit. Total cost? **1 byte.**
 
-Here is your **Official Hacker-Chef Recipe Card**. This is the perfect "cheat sheet" to include at the end of your blog post, giving your readers a quick-reference guide to the techniques they’ve learned.
-
 ## Step 8: Use a "Smart Oven" (Fast-Tracking with HatAsm)
 
 In the previous steps, we used a multi-tool approach: `nasm` to assemble, `objcopy` to strip, and `hexdump` to view. While reliable, it’s slow for a chef on the move. Enter **[HatAsm](https://github.com/EntySec/HatAsm)** - a powerful, all-in-one assembler and disassembler that lets you "bake" and "taste" your shellcode in one go.
