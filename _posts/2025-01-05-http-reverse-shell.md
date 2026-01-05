@@ -1,5 +1,5 @@
 ---
-title: Building the "Ghost in the Machine": Understanding the Assembly HTTP Reverse Shell
+title: test
 categories: [Post-Exploitation]
 tags: [assembly, malware, linux]
 pin: true
