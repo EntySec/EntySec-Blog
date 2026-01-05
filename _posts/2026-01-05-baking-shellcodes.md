@@ -1,5 +1,5 @@
 ---
-title: Baking Perfect Shellcode: Recipe for Real Hackers
+title: Backing Perfect Shellcode - Recipe for Real Hackers
 categories: [Payloads]
 tags: [malware, assembly, shellcodes]
 pin: true
