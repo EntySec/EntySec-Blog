@@ -1,6 +1,6 @@
 ---
 title: Building the "Ghost in Machine" - The Assembly HTTP Reverse Shell
-categories: [Post-Exploitation]
+categories: [Payloads]
 tags: [assembly, malware, linux]
 pin: true
 author: enty8080
