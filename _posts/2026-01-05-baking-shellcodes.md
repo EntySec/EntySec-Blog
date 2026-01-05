@@ -1,5 +1,5 @@
 ---
-title: Backing Perfect Shellcode - Recipe for Real Hackers
+title: Baking Perfect Shellcode - Recipe for Real Hackers
 categories: [Payloads]
 tags: [malware, assembly, shellcodes]
 pin: true
@@ -76,12 +76,8 @@ Let’s look at how to set a register to zero or a small value without hitting t
 | The "Lumpy" Way (Contains Nulls) | The "Sifted" Way (Null-Free) | Why it works |
 | --- | --- | --- |
 | `mov rax, 0` | `xor rax, rax` | XORing a register against itself always results in zero and generates the clean opcode `48 31 c0`. |
-| `mov al, 2` | `push 2` <br>
-
-<br> `pop rax` | `mov rax, 2` would be padded with nulls (e.g., `b8 02 00 00 00`). Pushing/Popping uses single-byte opcodes. |
-| `mov rbx, 0xFF` | `xor rbx, rbx` <br>
-
-<br> `mov bl, 0xFF` | We clear the whole register first, then only move data into the "low" 8-bit part (`bl`), avoiding the zero-padding. |
+| `mov al, 2` | `push 2; pop rax` | `mov rax, 2` would be padded with nulls (e.g., `b8 02 00 00 00`). Pushing/Popping uses single-byte opcodes. |
+| `mov rbx, 0xFF` | `xor rbx, rbx; mov bl, 0xFF` | We clear the whole register first, then only move data into the "low" 8-bit part (`bl`), avoiding the zero-padding. |
 
 ### The "Shrink-Wrap" Trick
 
