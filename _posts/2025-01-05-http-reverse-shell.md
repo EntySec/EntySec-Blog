@@ -1,5 +1,5 @@
 ---
-title: test
+title: Building the "Ghost in the Machine"
 categories: [Post-Exploitation]
 tags: [assembly, malware, linux]
 pin: true
