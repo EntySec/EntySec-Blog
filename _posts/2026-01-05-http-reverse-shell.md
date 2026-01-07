@@ -3,7 +3,7 @@ title: Building the "Ghost in Machine" - The Assembly HTTP Reverse Shell
 categories: [Payloads]
 tags: [assembly, malware, linux]
 pin: true
-author: @enty8080
+author: enty8080
 ---
 
 In the world of offensive security, the "Reverse Shell" is often considered the ultimate primitive. It represents the moment where abstract exploitation becomes tangible control. Traditionally, reverse shells are written in Python, Bash, or C — languages that offer convenience, portability, and rapid development. However, those same conveniences come at a cost: predictability.
