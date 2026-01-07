@@ -8,7 +8,7 @@ image:
   path: https://raw.githubusercontent.com/enty8080/Shellcode-Kitchen/refs/heads/main/data/logo.png
 ---
 
-> *"Most developers spend their careers building things up. We’re here to break them down—with style. Writing shellcode is the culinary art of exploitation: it requires precision, the removal of impurities, and the ability to work in a kitchen that wasn't built for you. In this guide, we're ditching the store-bought libraries and baking a raw, null-free payload from scratch. Grab your apron and your assembler; it’s time to cook."*
+> *"Most developers spend their careers building things up. We’re here to break them down — with style. Writing shellcode is the culinary art of exploitation: it requires precision, the removal of impurities, and the ability to work in a kitchen that wasn't built for you. In this guide, we're ditching the store-bought libraries and baking a raw, null-free payload from scratch. Grab your apron and your assembler; it’s time to cook."*
 
 ## Step 1: Discard the "Baking Pans" (Remove Sections)
 
@@ -29,7 +29,7 @@ When you're "baking" shellcode, you don't have the luxury of a structured kitche
 
 Imagine a recipe that says, "Walk exactly 400 miles North to find the salt." If you move your kitchen to a different city, that instruction is useless. This is what happens when you use **Absolute Addressing**. Standard compilers hardcode addresses (e.g., `0x401050`), assuming the program always loads at the same base address.
 
-In the world of exploitation, **ASLR (Address Space Layout Randomization)** moves your "kitchen" every time the program runs. If your shellcode looks for a "salt" (a string) at a fixed address, it will "crack" because that memory address might now hold garbage—or nothing at all.
+In the world of exploitation, **ASLR (Address Space Layout Randomization)** moves your "kitchen" every time the program runs. If your shellcode looks for a "salt" (a string) at a fixed address, it will "crack" because that memory address might now hold garbage — or nothing at all.
 
 * **The Fix:** Use **RIP-Relative Addressing**. In x64 assembly, the `RIP` (Instruction Pointer) always knows where you are *right now*. Instead of hardcoding a location, you calculate the location of your data relative to the current instruction.
 
@@ -143,7 +143,7 @@ When your shellcode finishes, you can't just let the CPU fall off a cliff. You n
 
 ## Step 6: The Cooling Phase (Extracting the Opcodes)
 
-When you compile assembly with `nasm` or `gcc`, the result is usually an **ELF (Executable and Linkable Format)** file. This file is bloated with "packaging"—metadata that tells the OS how to load it. Your injection vector (like a buffer overflow) won't understand an ELF file; it only understands raw **Opcodes** (Operation Codes).
+When you compile assembly with `nasm` or `gcc`, the result is usually an **ELF (Executable and Linkable Format)** file. This file is bloated with "packaging" — metadata that tells the OS how to load it. Your injection vector (like a buffer overflow) won't understand an ELF file; it only understands raw **Opcodes** (Operation Codes).
 
 * **The Fix:** You must perform a **Hex Extraction**. This is the process of scraping the "burnt edges" (headers) off your file to leave behind the pure, concentrated machine instructions. This hex string is your actual payload.
 
@@ -176,7 +176,7 @@ hexdump -v -e '"\\""x" 1/1 "%02x" ""' recipe.bin
 | **Hex String** | `"\x48\x31..."` | The final "plated" dish ready to be injected. |
 
 **The "Taste Test":**
-Before serving this to a target, a master chef always tests it in a controlled environment. We use a **Shellcode Loader**—a tiny C program that allocates executable memory, copies the hex string into it, and jumps to it.
+Before serving this to a target, a master chef always tests it in a controlled environment. We use a **Shellcode Loader** — a tiny C program that allocates executable memory, copies the hex string into it, and jumps to it.
 
 ```c
 // A simple "Tasting Plate"
@@ -275,7 +275,7 @@ If your target is a different "kitchen" altogether (like an ARM-based IoT device
 
 ## Step 9: The "Industrial Mixer" (Python Integration)
 
-For the master chef who needs to produce hundreds of variations of a recipe, manual assembly is too slow. By using **HatAsm’s Python API**, you can write scripts that bake shellcode programmatically. This is incredibly useful for "on-the-fly" payload generation where you might need to inject dynamic values—like an IP address or a port number—directly into the assembly before it's "cooked."
+For the master chef who needs to produce hundreds of variations of a recipe, manual assembly is too slow. By using **HatAsm’s Python API**, you can write scripts that bake shellcode programmatically. This is incredibly useful for "on-the-fly" payload generation where you might need to inject dynamic values — like an IP address or a port number — directly into the assembly before it's "cooked."
 
 * **The Fix:** Use the `HatAsm()` class to handle assembly and disassembly within your own Python exploits.
 
@@ -363,7 +363,7 @@ for line in hatasm.disassemble('x64', code):
 
 ### Pro-Tips for the Head Chef
 
-* **Avoid Overcooking:** Don't use `mov rax, [address]`—it’s too heavy and uses absolute paths.
+* **Avoid Overcooking:** Don't use `mov rax, [address]` — it’s too heavy and uses absolute paths.
 * **Keep it Clean:** Always `xor` your registers before use to ensure no "leftover flavors" from the host process interfere with your logic.
 * **The Taste Test:** Always verify your payload in a local "Testing Plate" (C loader) before deploying.
 
@@ -390,14 +390,13 @@ Null bytes aren't the only "lumps" to worry about. Some protocols (like FTP or H
 Modern OSs often use **NX (No-Execute)** bits. If you've injected your code into the Stack or Heap, the CPU might refuse to "eat" it.
 
 * **The Symptom:** An immediate crash with an "Access Violation" at the very first instruction.
-* **The Fix:** You’ll need a "glaze"—this is where **ROP (Return Oriented Programming)** comes in, allowing you to bypass NX by reusing existing code snippets.
+* **The Fix:** You’ll need a "glaze" — this is where **ROP (Return Oriented Programming)** comes in, allowing you to bypass NX by reusing existing code snippets.
 
 ### 4. "The Wrong Oven" (Architecture Mismatch)
 
-Running 32-bit (x86) shellcode on a 64-bit (x64) process—or vice versa—will result in total chaos.
+Running 32-bit (x86) shellcode on a 64-bit (x64) process — or vice versa — will result in total chaos.
 
 * **The Symptom:** The CPU interprets your opcodes as completely different, nonsensical instructions.
 * **The Fix:** Double-check your target. Use `file` on the target binary to ensure you are baking for the right architecture.
 
 **Bon Appétit!** Your shellcode is now perfectly baked, sifted, and plated. It is position-independent, null-free, and optimized for the tightest buffers.
-
